@@ -260,7 +260,7 @@ const addRecord = () => {
         });
     } else if (e.closest('.transfer')) {
         const fromAccount = prompt('Enter from which account to transfer? Cash / Bank / Savings / Investment', 'Cash');
-        const toAccount = prompt('Enter which account to transfer? \n Cash / Bank / Savings / Investment', 'Bank', 'Bank');
+        const toAccount = prompt('Enter which account to transfer? \n Cash / Bank / Savings / Investment', 'Bank');
         const transferAmount = prompt('Enter the amount you want to transfer?', 1);
         const transferRecord = `
         <div class="record">
