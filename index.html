@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+    <div class="container">
+        <div id="accounts" class="box">
+
+            <h2>List of Accounts</h2>
+
+            <div id="account-box">
+
+                <div id="cash" class="account">
+                    <div class="account-name">Cash</div>
+                    <div class="account-balance"></div>
+                </div>
+
+                <div id="bank" class="account">
+                    <div class="account-name">Bank</div>
+                    <div class="account-balance"></div>
+                </div>
+
+                <div id="saving" class="account">
+                    <div class="account-name">Savings</div>
+                    <div class="account-balance"></div>
+                </div>
+
+                <div id="investment" class="account">
+                    <div class="account-name">Investments</div>
+                    <div class="account-balance"></div>
+                </div>
+
+                <div id="debt" class="account">
+                    <div class="account-name">Debt</div>
+                    <div class="account-balance"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="add-record-box box">
+            <h2>Add Record</h2>
+
+            <div id="record-box">
+
+                <div class="add-income record-btn">
+                    <i class="fa-solid fa-money-bill income-icon"></i>
+                    <p>Add Income</p>
+                </div>
+
+                <div class="add-expense record-btn">
+                    <i class="fa-solid fa-circle-dollar-to-slot expense-icon"></i>
+                    <p>Add Expense</p>
+                </div>
+
+                <div class="transfer record-btn">
+                    <i class="fa-solid fa-arrow-right-arrow-left transfer-icon"></i>
+                    <p>Money Transfer</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="actual-balance-box box">
+            <h2>Actual Balance</h2>
+            <div id="actual-balance"></div>
+        </div>
+
+        <div class="cash-flow-content box">
+
+            <div class="cash-flow-box">
+                <h2>Cash Flow</h2>
+                <div id="cash-flow-amount">0</div>
+            </div>
+
+            <div class="income-box">
+                <div>Income</div>
+                <div id="income">0</div>
+            </div>
+
+            <div class="expense-box">
+                <div>Expenses</div>
+                <div id="expenses">0</div>
+            </div>
+
+        </div>
+
+        <div class="goal-box box">
+            <h2>Goals</h2>
+
+            <div id="goal-savings"></div>
+
+            <button id="create-goal-btn">Create Goal</button>
+
+            <div id="goal-list">
+                <h2>What are you saving for?</h2>
+
+                    <div id="goal-list-box">
+
+                        <div class="list">
+                            <i class="fa-solid fa-phone" style="background: deepskyblue;"></i>
+                            <p>NEW PHONE</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-car" style="background: cadetblue;"></i>
+                            <p>NEW CAR</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-home" style="background: orange;"></i>
+                            <p>NEW HOUSE</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-umbrella-beach" style="background: #99ff01;"></i>
+                            <p>HOLIDAY TRIP</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-graduation-cap" style="background: darkslategray;"></i>
+                            <p>EDUCATION</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-box-archive" style="background: hotpink;"></i>
+                            <p>EMERGENCY FUND</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-user-nurse" style="background: #ff5151;"></i>
+                            <p>HEALTH CARE</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-child-reaching" style="background: deeppink;"></i>
+                            <p>KIDS SPOILING</p>
+                        </div>
+
+                        <div class="list">
+                            <i class="fa-solid fa-box-open" style="background: #f1c619;"></i>
+                            <p>CHARITY</p>
+                        </div>
+
+                    </div>
+            </div>
+
+        </div>
+
+        <div class="record-box box">
+            <h2>Last Records Overview</h2>
+
+            <div id="transaction-record"></div>
+
+            <div id="record-category-box">
+                <h2>Choose transaction category?</h2>
+
+                    <div id="record-category-list">
+
+                        <div class="category">
+                            <i class="fa-solid fa-utensils" style="background: #ff5151;"></i>
+                            <span class="category-name">Food & Drinks</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-cart-shopping" style="background: deepskyblue;"></i>
+                            <span class="category-name">Shopping</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-house" style="background: #ff9f51;"></i>
+                            <span class="category-name">Housing</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-bus" style="background: #4d5456;"></i>
+                            <span class="category-name">Transportation</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-car" style="background: blueviolet;"></i>
+                            <span class="category-name">Vehicle</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-person" style="background: #81d700;"></i>
+                            <span class="category-name">Life & Entertainment</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-display" style="background: #454af4;"></i>
+                            <span class="category-name">Communication, PC</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-circle-dollar-to-slot" style="background:#0fd9c8;"></i>
+                            <span class="category-name">Financial Expenses</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-money-bill-trend-up" style="background: #ff258b;"></i>
+                            <span class="category-name">Investments</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-coins" style="background: #f1c619;"></i>
+                            <span class="category-name">Income</span>
+                        </div>
+
+                        <div class="category">
+                            <i class="fa-solid fa-bars" style="background: #696a6a;"></i>
+                            <span class="category-name">Others</span>
+                        </div>
+
+                    </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/2c7db289f1.js" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

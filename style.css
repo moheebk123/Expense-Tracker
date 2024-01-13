@@ -1,0 +1,480 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-weight: 600;
+    cursor: default;
+    user-select: none;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    padding: 1em 3em;
+
+    & > h1 {
+        margin: auto;
+        width: fit-content;
+        margin-bottom: 1em;
+    }
+
+    & .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1em;
+        width: 100%;
+        height: 90%;
+
+        & .box {
+            background: #272727;
+            border-radius: 10px;
+
+            & h2 {
+                text-align: center;
+            }
+        }
+
+        & #accounts {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1em;
+            height: 100%;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 4;
+
+            & h2 {
+                text-align: center;
+                margin-bottom: 1em;
+                font-size: 2.5em;
+            }
+
+            & #account-box {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                height: 100%;
+                gap: 1em;
+
+                & .account {
+                    width: 100%;
+                    height: 17%;
+                    border-radius: 10px;
+                    padding: 1em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    transition: 0.3s ease-in-out;
+
+                    & :is(.account-balance, .account-name) {
+                        font-size: 1.5em;
+                    }
+
+                    &:nth-child(1) {
+                        background: #25c6da;
+
+                        &:hover {
+                            background-color: #1faabd;
+                        }
+                    }
+                    &:nth-child(2) {
+                        background: #0649c1;
+
+                        &:hover {
+                            background-color: #063da5;
+                        }
+                    }
+                    &:nth-child(3) {
+                        background: #7e38bf;
+
+                        &:hover {
+                            background-color: #6c2aaa;
+                        }
+                    }
+                    &:nth-child(4) {
+                        background: #ff2c73;
+
+                        &:hover {
+                            background-color: #e21d5f;
+                        }
+                    }
+                    &:nth-child(5) {
+                        background: #383838;
+
+                        &:hover {
+                            background-color: #504c4c;
+                        }
+
+                        & .account-balance {
+                            color: #ff3737;
+                        }
+                    }
+                }
+            }
+        }
+
+        & .add-record-box {
+            padding: 1em;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+
+            & #record-box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1em;
+                text-align: center;
+
+                & div {
+
+                    & .income-icon {
+                        background-color: #47f347;
+
+                        &:hover {
+                            background-color: #0fcb0f;
+                        }
+                    }
+
+                    & .expense-icon {
+                        background-color: #ff5151;
+
+                        &:hover {
+                            background-color: #ff2121;
+                        }
+                    }
+
+                    & .transfer-icon {
+                        background-color: #ff9f51;
+
+                        &:hover {
+                            background-color: #ff8522;
+                        }
+                    }
+
+                    & i {
+                        border-radius: 50%;
+                        padding: 0.7em;
+                        font-size: 2em;
+                        margin-bottom: 0.6em;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+
+                        &:hover ~ p {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+
+                    & p {
+                        opacity: 0;
+                        transform: translateY(-100%);
+                        font-size: 1.1em;
+                        transition: 0.3s ease;
+                    }
+                }
+            }
+        }
+
+        & .actual-balance-box {
+            padding: 2.5em 2em;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            text-align: center;
+            display: grid;
+            place-content: center;
+
+            & h2 {
+                font-size: 2em;
+            }
+
+            & #actual-balance {
+                margin-top: 0.5em;
+                font-size: 3em;
+            }
+        }
+
+        & .cash-flow-content {
+            padding: 2em 1.5em;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1em;
+
+            & :is(.income-box, .expense-box, .cash-flow-box) {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.5em;
+            }
+
+            & #cash-flow-amount {
+                font-size: 1.5em;
+            }
+
+            & #expenses {
+                color: #ff5151;
+            }
+
+            & #income {
+                color: #47f347;
+            }
+        }
+
+        & .record-box {
+            padding: 1em;
+            grid-column-start: 4;
+            grid-column-end: 5;
+            grid-row-start: 1;
+            grid-row-end: 4;
+            overflow: hidden;
+
+            & #transaction-record {
+                margin-block: 0.5em;
+                height: 90%;
+                overflow-y: scroll;
+                padding-right: 1em;
+                border-block: 1px solid #999999c8;
+
+                &::-webkit-scrollbar{
+                    width: 5px;
+                }
+
+                &::-webkit-scrollbar-track{
+                    background: #d1e5ff;
+                }
+
+                &::-webkit-scrollbar-thumb{
+                    background: #383838;
+                    border-radius: 15px;
+                }
+
+                & .record {
+                    width: 100%;
+                    border-block: 1px solid #999999c8;
+                    padding: 1em 2em;
+                    display: flex;
+                    gap: 1em;
+                    align-items: center;
+
+                    & i {
+                        padding: 1em;
+                        border-radius: 50%;
+                    }
+
+                    & .details {
+                        width: 100%;
+
+                        & .category-amount, & .account-date {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            margin-block: 0.5em;
+                        }
+
+                        & .category-amount .record-amount.expense {
+                            color: #ff5151;
+                        }
+
+                        & .category-amount .record-amount.income {
+                            color: #47f347;
+                        }
+                    }
+                }
+            }
+
+            & #record-category-box {
+                display: none;
+                padding: 1em;
+                position: absolute;
+                border-radius: 10px;
+                background: #0000009f;
+                width: fit-content;
+                height: fit-content;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 8px 32px 0 #1e1e1f5e;
+                backdrop-filter: blur( 15px );
+                -webkit-backdrop-filter: blur( 15px );
+                border: 1px solid #4848482e;
+                transition: 0.5s ease-in-out;
+
+                & #record-category-list {
+                    margin-top: 1em;
+                    width: 100%;
+
+                    & .category {
+                        width: 100%;
+                        cursor: pointer;
+                        display: flex;
+                        gap: 1em;
+                        align-items: center;
+                        border-block: 1px solid #999999c8;
+                        padding: 0.3em 2em;
+
+                        & i {
+                            padding: 1em;
+                            border-radius: 50%;
+                            cursor: pointer;
+                        }
+
+                        & span {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
+        & .goal-box {
+            padding: 1em;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 4;
+            overflow: hidden;
+            padding-block: 1em;
+
+            & h2 {
+                font-size: 2em;
+            }
+
+            & button {
+                background-color: #4280f2;
+                font-size: 1.1em;
+                padding: 0.5em 2em;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            & #goal-savings {
+                margin-block: 0.5em;
+                height: 88%;
+                overflow-y: scroll;
+                padding-right: 1em;
+                border-block: 1px solid #999999c8;
+
+                &::-webkit-scrollbar{
+                    width: 5px;
+                }
+
+                &::-webkit-scrollbar-track{
+                    background: #d1e5ff;
+                }
+
+                &::-webkit-scrollbar-thumb{
+                    background: #383838;
+                    border-radius: 15px;
+                }
+
+                & .goal {
+                    margin-block: 0.5em;
+                    width: 100%;
+                    border: 1px solid;
+                    border-radius: 5px;
+                    padding: 1.5em 0;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    & .amount {
+                        font-size: 1.2em;
+                    }
+
+                    & i {
+                        padding: 0.5em;
+                        border-radius: 50%;
+                        cursor: pointer;
+
+                        &.goal-icon {
+                            padding: 1em;
+                        }
+
+                        &.add-savings {
+                            background-color: #19cee6;
+                        }
+
+                        &.delete-goal {
+                            background: #ff3737;
+                        }
+
+                        &.achieved-goal {
+                            background: #0fcb0f;
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+
+            & #goal-list {
+                display: none;
+                padding: 2em;
+                position: absolute;
+                border-radius: 10px;
+                background: #0000009f;
+                width: fit-content;
+                height: fit-content;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 8px 32px 0 #1e1e1f5e;
+                backdrop-filter: blur( 15px );
+                -webkit-backdrop-filter: blur( 15px );
+                border: 1px solid #4848482e;
+                transition: 0.5s ease-in-out;
+
+                & h2 {
+                    font-size: 1.5em;
+                }
+
+                & #goal-list-box {
+                    margin-top: 1em;
+                    width: 300px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    align-items: space-around;
+                    gap: 1em;
+
+                    & .list {
+                        text-align: center;
+                        width: 120px;
+                        cursor: pointer;
+
+                        & i {
+                            padding: 1em;
+                            border-radius: 50%;
+                            margin-bottom: 0.5em;
+                            font-size: 1.4em;
+                            cursor: pointer;
+                        }
+
+                        & p {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
