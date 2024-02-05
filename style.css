@@ -16,6 +16,10 @@ body {
   padding: 1em 3em;
   overflow-x: hidden;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   & > h1 {
     margin: auto;
     width: fit-content;
