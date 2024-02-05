@@ -99,7 +99,7 @@ const getData = () => {
 const calculateActualBalance = () => {
   actualBalance = 0;
   for (let i = 0; i < accountsBalance.length; i++) {
-    if (i == 4) {
+    if (i === 4) {
       actualBalance = Number(actualBalance) - Number(accountsBalance[i]);
     } else {
       actualBalance = Number(actualBalance) + Number(accountsBalance[i]);
@@ -109,8 +109,12 @@ const calculateActualBalance = () => {
   return actualBalance;
 };
 
-const calculateCashFlow = () =>
-  (cashFlow = Number(totalIncome) - Number(totalExpense));
+const calculateCashFlow = () => {
+  cashFlow = Number(cashFlow);
+  totalExpense = Number(totalExpense);
+  totalIncome = Number(totalIncome);
+  cashFlow = totalIncome - totalExpense;
+}
 
 const fillDetails = () => {
   accountsBalanceBox.forEach((balance, index) => {
@@ -164,6 +168,7 @@ const checkDetailsFilled = () => {
     setUserFillDetails();
     totalIncome = 0;
     totalExpense = 0;
+
     fillDetails();
   } else {
     getData();
@@ -216,14 +221,6 @@ const createGoal = () => {
     getGoal();
   });
 };
-
-// const addRecord = () => {
-//    if (e.closest(".transfer")) {
-//     recordBox.insertAdjacentHTML("afterbegin", transferRecord);
-//     setRecord();
-//     delete transferRecord;
-//   }
-// };
 
 const recordHTML = (
   recordType,
@@ -329,7 +326,7 @@ const addRecord = (recordType) => {
           accountsBalance[3] =
             Number(accountsBalance[3]) + Number(recordAmount);
         }
-        totalIncome = Number(totalIncome) + Number(recordAmount);
+        totalIncome = Number(Number(totalIncome) + Number(recordAmount));
       } else {
         if (recordAccount == "Cash") {
           accountsBalance[0] =
@@ -344,7 +341,7 @@ const addRecord = (recordType) => {
           accountsBalance[3] =
             Number(accountsBalance[3]) - Number(recordAmount);
         }
-        totalExpense = Number(totalExpense) + Number(recordAmount);
+        totalExpense = Number(Number(totalExpense) + Number(recordAmount));
       }
       fillDetails();
       setData();
@@ -353,7 +350,6 @@ const addRecord = (recordType) => {
 };
 
 const addTransferRecord = () => {
-  // let count = 1;
   const currDate = new Date();
   const month = currDate.getMonth();
   const date = currDate.getDate();
