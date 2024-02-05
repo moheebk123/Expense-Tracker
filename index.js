@@ -1,4 +1,7 @@
 const accountsBalanceBox = document.querySelectorAll(".account-balance");
+const addIncomeBtn = document.querySelector(".income-icon");
+const addExpenseBtn = document.querySelector(".expense-icon");
+const transferBtn = document.querySelector(".transfer-icon");
 const actualBlanceBox = document.getElementById("actual-balance");
 const cashFlowBox = document.getElementById("cash-flow-amount");
 const income = document.getElementById("income");
@@ -6,24 +9,15 @@ const expenses = document.getElementById("expenses");
 const goalBox = document.getElementById("goal-savings");
 const goalList = document.getElementById("goal-list");
 const createGoalBtn = document.getElementById("create-goal-btn");
-// const addRecordBox = document.getElementById("record-box");
-const addIncomeBtn = document.querySelector(".income-icon");
-const addExpenseBtn = document.querySelector(".expense-icon");
-const transferBtn = document.querySelector(".transfer-icon");
 const recordBox = document.getElementById("transaction-record");
 const recordCategoryBox = document.getElementById("record-category-box");
 const recordCategoryList = document.getElementById("record-category-list");
 
-let userFillDetails;
-
 // Accounts Balance = Cash, Bank, Savings, Investment, Debt
-let accountsBalance = [];
 //Actual Balance = Cash + Bank + Savings + Investment - Debt
-let actualBalance;
 // Cash Flow = Tatal Income - Total Expense
-let cashFlow;
-let totalIncome;
-let totalExpense;
+let userFillDetails, actualBalance, cashFlow, totalExpense, totalIncome;
+let accountsBalance = [];
 
 const monthName = [
   "Jan",
@@ -114,7 +108,7 @@ const calculateCashFlow = () => {
   totalExpense = Number(totalExpense);
   totalIncome = Number(totalIncome);
   cashFlow = totalIncome - totalExpense;
-}
+};
 
 const fillDetails = () => {
   accountsBalanceBox.forEach((balance, index) => {
@@ -176,7 +170,7 @@ const checkDetailsFilled = () => {
   }
 };
 
-const addDeleteGoal = () => {
+const addDeleteGoal = (event) => {
   const goal = event.target.closest(".goal");
   if (event.target.classList.contains("delete-goal")) {
     goal.remove();
@@ -193,33 +187,24 @@ const addDeleteGoal = () => {
   setGoal();
 };
 
-const createGoal = () => {
-  goalList.style.display = "block";
-
-  goalList.addEventListener("click", () => {
-    goalList.style.display = "none";
-    const icon = event.target.closest("div").querySelector("i");
-    icon.classList.add("goal-icon");
-    const iconHTML = icon.outerHTML;
-    const name = event.target.closest("div").querySelector("p");
-    const goalAmount = prompt("Enter goal amount", 0);
-    const savedAmount = prompt("Enter saved amount", 0);
-    const goal = `
-        <div class="goal">
-            ${iconHTML}
-            <div class="goal-name">${name.innerText}</div>
-            <div class="amount">₹
-                <span class="saved-amount">${savedAmount}</span>/ ₹
-                <span class="goal-amount">${goalAmount}</span>
-            </div>
-            <i class="fa-solid fa-plus add-savings"></i>
-            <i class="fa-solid fa-xmark delete-goal"></i>
-        </div>
-        `;
-    goalBox.insertAdjacentHTML("beforeend", goal);
-    setGoal();
-    getGoal();
-  });
+const goalHTML = (
+  iconHTML,
+  name,
+  savedAmount,
+  goalAmount
+) => {
+  return `
+  <div class="goal">
+    ${iconHTML}
+    <div class="goal-name">${name.innerText}</div>
+    <div class="amount">₹
+      <span class="saved-amount">${savedAmount}</span>/ ₹
+      <span class="goal-amount">${goalAmount}</span>
+    </div>
+    <i class="fa-solid fa-plus add-savings"></i>
+    <i class="fa-solid fa-xmark delete-goal"></i>
+  </div>
+  `;
 };
 
 const recordHTML = (
@@ -248,7 +233,13 @@ const recordHTML = (
   `;
 };
 
-const transferHTML = (transferAmount, fromAccount, toAccount, date, month) => {
+const transferHTML = (
+  transferAmount,
+  fromAccount,
+  toAccount,
+  date,
+  month
+  ) => {
   return `
   <div class="record">
     <i class="fa-solid fa-arrow-right-arrow-left" style="background: #19f16f;"></i>
@@ -277,6 +268,24 @@ const transferHTML = (transferAmount, fromAccount, toAccount, date, month) => {
     </div>
   </div>
   `;
+};
+
+const createGoal = () => {
+  goalList.style.display = "block";
+
+  goalList.addEventListener("click", (event) => {
+    goalList.style.display = "none";
+    const icon = event.target.closest("div").querySelector("i");
+    icon.classList.add("goal-icon");
+    const iconHTML = icon.outerHTML;
+    const name = event.target.closest("div").querySelector("p");
+    const goalAmount = prompt("Enter goal amount", 0);
+    const savedAmount = prompt("Enter saved amount", 0);
+    const goal = recordHTML(iconHTML, name, savedAmount, goalAmount);
+    goalBox.insertAdjacentHTML("beforeend", goal);
+    setGoal();
+    getGoal();
+  });
 };
 
 const addRecord = (recordType) => {
