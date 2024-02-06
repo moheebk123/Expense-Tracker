@@ -16,6 +16,10 @@ body {
   padding: 1em 3em;
   overflow-x: hidden;
 
+  @media screen and (width < 768px) {
+    padding: 1em 1em;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -123,6 +127,10 @@ body {
 
           & :is(.account-balance, .account-name) {
             font-size: 1.5em;
+
+            @media screen and (width < 768px) {
+              font-size: 1em;
+            }
           }
 
           &:nth-child(1) {
@@ -237,6 +245,10 @@ body {
             cursor: pointer;
             transition: 0.3s ease-in-out;
 
+            @media screen and (width < 768px) {
+              font-size: 1.2em;
+            }
+
             &:hover ~ p {
               transform: translateY(0);
               opacity: 1;
@@ -323,6 +335,10 @@ body {
         display: flex;
         justify-content: space-between;
         font-size: 1.5em;
+
+        @media screen and (width < 768px) {
+          font-size: 1.2em;
+        }
       }
 
       & #cash-flow-amount {
