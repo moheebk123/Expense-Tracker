@@ -271,20 +271,26 @@ const transferHTML = (
 };
 
 const createGoal = () => {
+  let count = 1;
   goalList.style.display = "block";
 
   goalList.addEventListener("click", (event) => {
-    goalList.style.display = "none";
-    const icon = event.target.closest("div").querySelector("i");
-    icon.classList.add("goal-icon");
-    const iconHTML = icon.outerHTML;
-    const name = event.target.closest("div").querySelector("p");
-    const goalAmount = prompt("Enter goal amount", 0);
-    const savedAmount = prompt("Enter saved amount", 0);
-    const goal = recordHTML(iconHTML, name, savedAmount, goalAmount);
-    goalBox.insertAdjacentHTML("beforeend", goal);
-    setGoal();
-    getGoal();
+    if (count === 1) {
+      count = 0;
+      goalList.style.display = "none";
+      const icon = event.target.closest("div").querySelector("i");
+      console.log(icon);
+      icon.classList.add("goal-icon");
+      const iconHTML = icon.outerHTML;
+      console.log(iconHTML);
+      const name = event.target.closest("div").querySelector("p");
+      const goalAmount = prompt("Enter goal amount", 0);
+      const savedAmount = prompt("Enter saved amount", 0);
+      const goal = goalHTML(iconHTML, name, savedAmount, goalAmount);
+      goalBox.insertAdjacentHTML("beforeend", goal);
+      setGoal();
+      getGoal();
+    }
   });
 };
 
